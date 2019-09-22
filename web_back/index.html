@@ -55,7 +55,7 @@
       </form>
       <div class="user_center_link">
         <a href="user.html" onclick="setMenu(3,0)" target="main_frame">个人中心</a>
-        <img src="images/2.jpg" alt="person" />
+        <img src="images/2.jpg" alt="person" / id="grImg">
         <a href="javascript:;" id="btnLogout"><i class="iconfont icon-tuichu"></i> 退出</a>
       </div>
     </div>
@@ -138,6 +138,25 @@
       }
     </script>
 
+    <script src="./js/utils/ajax.js"></script> 
+    <script src="./js/utils/common.js"></script> 
+    <script>
+      document.getElementById('btnLogout').onclick=function(){
+        url.logout(function(res){
+          if(res.code==200){
+            location.href='./login.html';
+          }
+        })
+      }
+      url.getuser(function(res){
+        if(res.code==200){
+          document.getElementById('userName').innerHTML=res.data.nickname;
+          document.getElementById('userImg').setAttribute('src',res.data.user_pic);
+          document.getElementById('grImg').setAttribute('src',res.data.user_pic);
+        }
+      })
+   
     
+    </script>
   </body>
 </html>
